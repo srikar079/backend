@@ -1,0 +1,22 @@
+{
+  "name": "03",
+  "version": "1.0.0",
+  "description": "mega project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srikar079/backend.git"
+  },
+  "author": "Srikar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srikar079/backend/issues"
+  },
+  "homepage": "https://github.com/srikar079/backend#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
