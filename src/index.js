@@ -7,8 +7,18 @@ import connectDB from './DB/index.js';
 dotenv.config({
     path:'./env'
 })
-connectDB();
-
+connectDB() //returns a promise from async
+.then(()=>{
+  app.listen(process.env.PORT || 8000,()=>{
+    console.log(`Server running at ${process.env.PORT}`)
+  })
+  app.on("error",(error)=>{
+    console.log("eror", error);
+  })
+})
+.catch((err)=>{
+  console.log("Mongo Db error", error)
+})
 
 
 /*
@@ -18,7 +28,7 @@ const app = express();
     try{
       await mongoose.connect(`${process.env.MONGODB_URI}/
       ${DB_NAME}`);
-      app.ong("error",(error)=>{
+      app.on("error",(error)=>{
         console.log("error:", error)
       })
 
