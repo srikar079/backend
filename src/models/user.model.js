@@ -59,7 +59,13 @@ userSchema.pre("Save", async function (next){
   next();
 })
 
+userSchema.pre("Save",async function(next){
+  if(!this.isModified("password"))
+    return next();
 
+  this.password= bcrypt.hash(this.password,10);
+  next();
+})
 
 userSchema.methods.generateAccessToken= function(){
   jwt.sign({
@@ -72,9 +78,8 @@ userSchema.methods.generateAccessToken= function(){
   {
     expiresIn: process.env.ACCESS_TOKEN_EXPIRY
   }
-)
+) 
 }
-
 
 userSchema.methods.generateRefreshToken= function(){
   jwt.sign({
