@@ -11,7 +11,7 @@ import fs from 'fs'
     });
 
 
-const uploadOnCloudinary = asnyc (localFilePath)=>{
+const uploadOnCloudinary = async (localFilePath)=>{
     try{
           if(!localFilePath)
             return "incorrect path, file does not exist";
