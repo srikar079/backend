@@ -16,14 +16,13 @@ const uploadOnCloudinary = async (localFilePath)=>{
           if(!localFilePath)
             return "incorrect path, file does not exist";
 
-          const response =await cloudindary.uploader.upload(localFilePath,{
+          const response =await cloudinary.uploader.upload(localFilePath,{
             resource_type:"auto"
           })
           console.log("uploaded in cloudinary", response.url);
     }
     catch(error){
       fs.unlinkSync(localFilePath)
-    //removes locally saved file after failing of the upload operation
     return null;
     }
 }
