@@ -1,13 +1,21 @@
-import multer from "multer";
+import multer from 'multer';
+import path from 'path';
 
+// Configure multer storage
 const storage = multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,"/public/keep");
+    destination: (req, file, cb) => {
+        const fullPath = 'E:/study/ext/Backend/03/public/keep'; // Updated to the absolute path
+        console.log("Destination path:", fullPath);
+        cb(null, fullPath);
     },
-    filename:function (req,file,cb){
-        
-        cb(null, file.originalname)
-    }
-})
+    filename: (req, file, cb) => {
+        console.log("Saving file:", file.originalname); // Log filename
 
-export const upload = multer ({storage})
+        cb(null, `${Date.now()}-${file.originalname}`);
+    },
+});
+
+// Initialize multer
+const upload = multer({ storage });
+
+export { upload };
