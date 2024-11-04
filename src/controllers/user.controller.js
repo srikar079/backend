@@ -40,7 +40,22 @@ const registerUser = asyncHandler(async (req, res) => {
     if (!createdUser) {
         throw new ApiError(500, "Error while registering the user");
     }
+     
+    const loginUser = asyncHandler(async(req,res)=>{
 
+        const {email, username, password} = req.body
+            if(!username || !email){
+                throw new ApiError(400, "username or password is required")                
+             }
+            
+         const user= await User.findOne({
+            $or: [{username}, {email}]
+         })
+         if(!user){
+            throw new ApiError(404, "user does not exist")
+         }   
+
+    })      
     return res.status(201).json(new ApiResponse(200, createdUser, "Successfully registered"));
 });
 
